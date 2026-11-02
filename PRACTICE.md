@@ -34,31 +34,41 @@ git add -A && git commit -m "[SD-10 wip] got through high-level design" && git p
 
 ## What goes where
 
-| Path | What | Written in |
+All paths are relative to the repo root (`/mnt/c/Users/brian/IdeaProjects/interview-prep-practice`).
+Most units create a new file. Git does not track empty folders, so before creating a file, run
+`mkdir -p` for its folder (for example `mkdir -p system-design/bitly`).
+
+| Path | What | Created in |
 |---|---|---|
-| `system-design/framework.md` | Your one-page delivery framework, from memory, updated as you learn | SD-01, SD-02, then ongoing |
-| `system-design/concepts.md` | Building-block notes (Monis, Hello Interview core concepts, Frank Kane gap-fills) | SD-03 to SD-06 |
-| `system-design/technologies.md` | Key technology notes (Redis, Kafka, PostgreSQL, ...) | SD-07, SD-08 |
+| `system-design/framework.md` | Your one-page delivery framework. Two headings: `## What E5 interviewers expect` (5 bullets) and `## Delivery framework` (the 5 steps with time boxes, from memory). Update it in the same commit whenever a redo or mock changes how you run the framework | SD-01 creates it, SD-02 fills the second heading |
+| `system-design/concepts.md` | Building-block notes, one `##` heading per video or topic (Monis, Hello Interview core concepts, Frank Kane gap-fills) | SD-03, updated SD-04 to SD-06 |
+| `system-design/technologies.md` | Key technology notes, one `##` heading per technology (Redis, Kafka, PostgreSQL, ...) | SD-07, updated SD-08 |
+| `system-design/patterns/overview.md` | One line per common pattern, plus the Top 10 problems list | SD-08 |
 | `system-design/patterns/<pattern>.md` | 5 to 10 bullets per pattern | Pattern units |
 | `system-design/<problem>/notes.md` | Study notes for a breakdown | Study units |
-| `system-design/<problem>/redo.md` + diagram | Your timed redo (see template below) | Redo units |
-| `system-design/mocks/<yyyy-mm-dd>-<problem>.md` | Mock, guided practice, and readiness-check summaries | Phase 3 and reps |
-| `behavioral/log.md` | **One line per behavioral unit, nothing more** | BH units |
+| `system-design/<problem>/redo.md` | Your timed redo (see template below) | Redo units |
+| `system-design/<problem>/<problem>.excalidraw` | The redo diagram: draw at https://excalidraw.com, then menu > Save to disk (a `.png` export is fine instead) | Redo units |
+| `system-design/mocks/<yyyy-mm-dd>-<problem>.md` | Claude mock, Guided Practice, Frank Kane mock, and Hello Interview AI mock summaries (see template below) | Phase 3 and reps |
+| `behavioral/log.md` | **One line per behavioral unit, nothing more** | Already exists; BH units add a line |
 
 ## Unit types
 
 - **Study** (about 60 min): read the Hello Interview breakdown (and its video walkthrough if it has
-  one), then write `notes.md`: key requirements, the deep dives, what surprised you.
+  one), then create `system-design/<problem>/notes.md`: key requirements, the deep dives, what surprised you.
 - **Redo** (about 60 min): close the breakdown. Start a **45-minute timer**. Talk out loud while
-  writing `redo.md` and drawing the diagram, framework order, requirements first. Then open the
-  breakdown, fill in "What I missed", and commit.
-- **Pattern** (about 45 to 60 min): read the pattern page, write 5 to 10 bullets.
+  writing `system-design/<problem>/redo.md` and drawing `system-design/<problem>/<problem>.excalidraw`,
+  framework order, requirements first. Then open the breakdown, fill in "What I missed", and commit.
+- **Pattern** (about 45 to 60 min): read the pattern page, write 5 to 10 bullets in a new
+  `system-design/patterns/<pattern>.md`.
 - **Claude mock** (about 60 min): open a new Claude chat and paste:
   > Run a 45-minute system design mock interview: <problem>. Meta E5 calibration. Make me drive
   > with the delivery framework, push back like a real interviewer, then grade each framework step
   > strictly.
 
-  Save a summary to `system-design/mocks/`.
+  Create `system-design/mocks/<yyyy-mm-dd>-<problem>.md` from the mock summary template below.
+- **Guided Practice** (about 45 to 75 min): on the Hello Interview practice page, pick any problem at
+  the unit's difficulty that you have not studied or redone yet. Create
+  `system-design/mocks/<yyyy-mm-dd>-<problem>.md` from the mock summary template below.
 - **Behavioral** (about 45 to 60 min): do the work in Hello Interview's Story Builder or behavioral
   pages, then add one line to `behavioral/log.md`.
 
@@ -83,6 +93,16 @@ Non-functional (scale, latency, consistency vs. availability):
 ## What I missed vs. the breakdown
 
 ## One thing to do differently next time
+```
+
+## Mock summary template (`system-design/mocks/<yyyy-mm-dd>-<problem>.md`)
+
+```
+# <Problem>, <yyyy-mm-dd>, <Claude mock | Guided Practice | Frank Kane mock | HI AI mock>, <minutes> min
+- Grade per step: Requirements <>, Core Entities <>, API <>, High-Level Design <>, Deep Dives <>
+- Weakest step:
+- What the interviewer pushed on:
+- One change for next time:
 ```
 
 ## Confidentiality (this repo is public)
